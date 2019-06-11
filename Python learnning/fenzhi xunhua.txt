@@ -1,0 +1,131 @@
+if 条件（真才走）：
+  print（真）
+else：
+  print（假）
+
+if。。elif..elif ..else(只要有一个分支符合，后面就不走了，输出符合结果）
+
+假：‘’、0、（）、[]、{}、none
+真：除了假就是真
+
+
+
+输入两个数，输出大的数
+
+a=int(input(<<<))
+b=int(input(<<<))
+if a>b:
+  print(a)
+else:
+  print(b)
+
+给定一个不超过5位的正整数，输出有几位数？
+
+num=int(input(<<<))
+num1=len(str(num))
+print(num1)
+
+二分，折半查找：
+num=int(input(<<<))
+if num>1000:
+ if num>=10000:
+   print(5)
+ else:
+   print(4)
+else:
+ if num>=100:
+   print(3)
+ elif num>=10:
+   print(2)
+ else:
+   print(1)
+
+
+循环：while
+
+while 条件（真才进）：
+   block
+
+flag=10
+while flag:
+  print(flag)
+  flag-=1
+
+
+循环：for
+for element in iteratable(可迭代对象）:
+   block
+
+element从可迭代对象中一个一个找。
+
+for i in range(10,1,-1):
+  print(i)
+9
+8
+7
+6
+5
+4
+3
+2
+
+循环continue语句：中断当前循环的当次执行，继续下一次循环（回头重来）
+循环break语句：终止当前循环
+举例：计算1000以内被7整除的前20个数（for循环）
+count=0
+for i in range(0,1000,7)
+    print(i)
+    count+=1
+    if count>=20:
+      break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
