@@ -79,15 +79,25 @@
 
 # 给一个数，判定他是否是素数（一个大于1的自然数，只能被1和他本身整除）
 
-n = int(input('<<<'))
-for i in range(2, n):
-    if n % i == 0 :
-        print('不是素数')
-        break
-else:
-    print('是素数')
+# n = int(input('<<<'))
+# for i in range(2, n):
+#     if n % i == 0 :
+#         print('不是素数')
+#         break
+# else:
+#     print('是素数')
 
-
+num=500 #int
+n=6 #几位数
+w=10**(n-1)
+flag=False #假定还没有碰到第一个非零
+for i in range(n):
+    y=num//w
+    if flag or y:
+        print(y)
+        flag=True #从此开关打开
+    num=num%w
+    w = w//10
 
 
 
