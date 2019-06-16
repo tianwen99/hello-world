@@ -79,14 +79,18 @@
 
 # 给一个数，判定他是否是素数（一个大于1的自然数，只能被1和他本身整除）
 
-n = int(input('<<<'))
-for i in range(2, n):
-    if n % i == 0 :
-        print('不是素数')
-        break
-else:
-    print('是素数')
+# n = int(input('<<<'))
+# for i in range(2, n):
+#     if n % i == 0 :
+#         print('不是素数')
+#         break
+# else:
+#     print('是素数')
 
+for i in range(1,10):
+    for j in range(1,i+1):
+        print('j'+'*'+'i'+'='+str(j*i)+end=' ')
+    print( )
 
 
 
