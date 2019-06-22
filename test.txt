@@ -327,11 +327,34 @@ kwargs是关键字参数，是一个字典。
 {{}}表示打印花括号。
 
 对齐
+‘{0}*{1}={2：<2}’.format(3,2,3*2)=3*2= 6
+          下标  宽度2  左对齐不够的空填充  
+‘{：^30}’.format(“acb")居中
 
 进制
+十进制：‘{0：d}’.format(16)=16
+‘{0：#d}’.format(16)=16
+十六进制：‘{0：x}’.format(16)=10
+‘{0：#x}’.format(16)=0x10
+只有16进制有大小写：
+{:X}’.format(15)=F
+
+八进制：‘{0：o}’.format(16)=20
+‘{0：#0}’.format(16)=0o20
+二进制：‘{0：b}’.format(10)=1010
+‘{0：#b}’.format(10)=0b1010
 
 浮点数
-
+‘{}’.format(3**0.5)=1.7320505677667868768小数位数多
+‘{：g}’.format(3**0.5)=1.7320505精度减少
+‘{：f}’.format(3**0.5)=1.73205089精度比g多一个
+‘{：20f}’.format(3**0.5)=1.732051右对齐（换成g也一样，只是少一个精度）
+‘{：2}’.format(3**0.5)=1.7320505677667868768宽度为2，只有大于数字本身才会有空格，默认右对齐，空填充
+‘{：.2}’.format(3**0.5)=1.7两个数字
+‘{：.2f}’.format(3**0.5)=1.73两位小数
+‘{：3.2f}’.format(3**0.5)=1.73宽度为3，两位小数
+‘{：3.3f}’.format(0.2745)=0.275四舍五入的
+‘{：3.2%}’.format(1/3)=33.33%
 
 字符串练习：
 用户输入一个数字，判断是几位数。
@@ -339,6 +362,246 @@ kwargs是关键字参数，是一个字典。
 打印每一个数字及其重复次数
 
 输入5个数，打印每个数的位数，将这些数升序打印。
+
+
+bytes :不可变字节序列
+字符串与bytes:
+1.字符串是字符组成的有序序列，字符可以使用编码来理解。
+2.bytes是字节组成的有序的不可变序列。
+3.bytearray是字节组成的有序的可变序列。
+
+编码与解码：
+1.字符串按照不同的字符集编码encode返回字节序列bytes
+	encode（encoding='utf-8',errors='strct'）->bytes
+2.字节序列按照不同的字符集解码encode返回字符串。
+	bytes.encode(encoding='utf-8',errors='strct'）->str
+	bytearray.encode(encoding='utf-8',errors='strct'）->str
+
+bytes定义：
+bytes（）空bytes
+bytes（int）指定字节的bytes，被0填充，bytes（2）=b'\x00\x00'
+bytes（string，encoding[,errors]）->bytes等价于string.encode()
+	print(bytes('a',encoding='utf-8'))=b'a'
+	print('a'.encode())=b'a'
+bytes(bytes or buffer)从一个字节序列或者buffer复制出一个新的不可变的bytes对象。
+
+使用b前缀定义：
+1.只允许基本ASCII使用字符形式b'abc9'
+2.使用16进制表示b'\x41\x61'
+
+bytes操作：
+和str类型类似，都是不可变，所以很多方法都一样，只不过输入是bytes，输出是bytes。
+b'abcd'.replace(b'f',b'k')=b'abck'
+b'abc'.find(b'b')=1找下标
+
+类方法bytes.fromhex(string):
+1.string必须是两个字符的16进制形式，‘6162 6a 6b’,空格被忽略。
+bytes.fromhex('616362  6a 6b00')=b'acbjk\x00'
+
+hex():返回16进制表示的字符串。'abc'.encode().hex()=616263
+
+索引：b'abcd'[0]=97是十进制对应的数字
+
+
+
+bytearray：字节数组，可变
+定义和bytes一样，把bytes换成bytearray
+
+bytearray操作：
+append（int）尾部追加一个元素。
+insert（index，int）在指定索引插入元素。
+extend（iterable_of_ints）将一个可迭代整数集追加
+pop（index=-1）从指定索引上移除元素，默认从尾部
+remove（value）找到第一个value移除元素，找不到抛异常。
+上述方法要使用int类型，值在【0,255】
+
+clear（）清空bytearray
+reverse（），反转，就地修改。
+
+
+
+
+
+int和bytes：
+int.from_bytes(bytes,byteorder):将一个字节数组表示成整数
+
+int.to_bytes(length,byteorder):将一个整数表达成指定长度的字节数组
+
+i = int.from_bytes(b'abc','big')
+
+print(i,hex(i))=6382179 0x616263
+print(i.to_bytes(3,'big'))=b'abc'
+
+
+随机产生10个数字
+要求：
+1.每个数字取值范围【1,20】
+2.统计重复的数字有几个？分别是什么？
+3.统计不重复的数字有几个？分别是什么？
+举例：11,7,5,11,6,7,4，其中2个数字重复，是7和11,3个数字没有重复，是4,5和7
+
+
+求杨辉三角的第m行第k个元素（C（m-1，k-1））
+
+
+给定一个3*3的方阵，反转打印
+123    147
+456》》258
+789    369
+# 0,0  1,0  2,0
+# 0,1  1,1  2,1
+# 0,2  1,2  2,2
+两层循环，坐标不相等的换位置就OK
+
+
+123    14
+456》》25
+       36
+
+
+ipython使用：
+help（int）：查帮助，int？？
+！调用当前shell命令
+%作用当前行
+%%作用整个框
+
+%%js在cell中运行JS脚本
+
+
+
+封装和解构：
+封装：
+1.将多个值使用逗号进行分割，组合在一起。
+2.本质上返回一个元组，只是省掉了小括号。
+t1=（2,1）定义为元组
+t2=1,2将1和2封装成元组
+
+t1 = (1,2)
+t2 = 1,2
+print(type(t1))=<class 'tuple'>
+print(type(t2))=<class 'tuple'>
+
+举例：冒泡法用的a,b=b,a
+等号右边用了封装，左边用了解构
+
+
+解构：
+1.把线性的元素解开，并顺序的赋给其他变量。
+2.左边接纳的变量数要和右边解开的元素个数一致。（a,*b=2,3,4,5,5,8,a只取一个，剩下的都给b,*b=[3,4,5,5,8]）
+
+lst=(3,5)
+first,second=lst
+print(first,second)=3 5
+被*b收集的组成一个列表
+
+
+
+丢弃变量：
+1.这是一个惯例，是一个不成文约定，不是标准。
+2.如果不关心一个变量，可以定义为_
+
+
+
+集set：
+1.约定set翻译为 集合，collection翻译为集合类型，是个大概念。
+2.可变的、无序的、不重复的元素的集合。
+3.set的元素要求必须可以hash
+4.目前学过的不可以hash的类型有list、set
+5.元素不可以索引。
+6.set可以迭代。
+
+
+set增加：
+add（elem）:追加一个元素到set中，如果元素存在，什么都不做。
+update（*other）：合并其他元素到set中，other必须是可迭代对象，就地修改。
+
+set删除：
+remove（element）：从set移除元素，元素不存在抛出异常keyError
+
+discard（element）：从set移除元素，元素不存在什么都不做。
+
+pop（）-》item：移除并返回任意的元素。空集返回keyerror
+
+clear（）：移除所有元素。
+
+
+set修改、查询：
+要么删除，要么加入元素。
+可以迭代，可以遍历
+in和not in判断元素是否在set中
+
+
+set和线性结构：
+线性结构的查询时间复杂度是O（n）
+set、dict等结构，内部使用可hash值作为key，时间复杂度可以做到O（1），查询时间和数据规模无关。
+
+可hash类型：不可变类型（数值型int，float、complex，布尔型，字符串，元组，none）
+
+set的元素必须是可hash的。
+
+
+集合运算：
+并集：
+union（*other）
+
+|运算符重载，等同union
+
+update（*other）：就地修改
+
+|=等同update
+
+交集：
+intersection（*other）
+
+&等同intersection
+
+intersection_update（*other）：就地修改
+
+&=等同intersection_update
+
+
+
+对称差集：
+123--345=1245
+
+symmetric_differece(othher)
+
+^
+symmetric_differece_update（other）就地修改
+
+^=
+
+set1 < set2判断set1是否是set2的真子集
+
+isdisjoint（other）：当前集合和另一个集合有没有交集，没有返回True
+
+
+
+集合应用：
+共同好友、微信群提醒、权限判断
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
