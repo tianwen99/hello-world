@@ -9,7 +9,7 @@ num=54321
 num=int(input(<<<))
 lnum=len(str(num))
 w=10000
-for i in rang(lnum):
+for i in range(lnum):
   print(num//w)
   num%=w
   w//=10
