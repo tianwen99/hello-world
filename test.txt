@@ -373,9 +373,9 @@ bytes :不可变字节序列
 编码与解码：
 1.字符串按照不同的字符集编码encode返回字节序列bytes
 	encode（encoding='utf-8',errors='strct'）->bytes
-2.字节序列按照不同的字符集解码encode返回字符串。
-	bytes.encode(encoding='utf-8',errors='strct'）->str
-	bytearray.encode(encoding='utf-8',errors='strct'）->str
+2.字节序列按照不同的字符集解码decode返回字符串。
+	bytes.decode(encoding='utf-8',errors='strct'）->str
+	bytearray.decode(encoding='utf-8',errors='strct'）->str
 
 bytes定义：
 bytes（）空bytes
